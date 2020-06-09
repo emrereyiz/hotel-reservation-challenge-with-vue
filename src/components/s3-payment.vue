@@ -2,10 +2,10 @@
   <section>
     <v-row>
       <v-col cols="12">
-        <h3>Check-in: 08/06/2020 Checkout: 10/06/2020</h3>
+        <h3>Check-in: {{checkinDate}} Checkout: {{checkoutDate}}</h3>
       </v-col>
       <v-col cols="12">
-        <h3>Oda Tipi: Standart Manzara / Deniz</h3>
+        <h3>Oda Tipi: {{roomType}} / {{roomView}}</h3>
       </v-col>
       <v-col cols="12">
         <app-card></app-card>
@@ -18,6 +18,25 @@ import creditCard from "./creditCard"
 export default {
   components: {
     appCard: creditCard
+  },
+  data () {
+    return {
+
+    }
+  },
+  computed: {
+    checkinDate () {
+      return this.$store.getters.getCheckinDate
+    },
+    checkoutDate () {
+      return this.$store.getters.getCheckoutDate
+    },
+    roomType () {
+      return this.$store.getters.getRoomType
+    },
+    roomView () {
+      return this.$store.getters.getRoomView
+    }
   }
 }
 </script>

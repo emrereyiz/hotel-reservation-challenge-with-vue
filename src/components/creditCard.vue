@@ -3,16 +3,16 @@
   <div :class="`card ${back}`">
 
     <span class="card__number">
-      0000 0000 0000 0000
+      {{cardNumber}}
     </span>
     <span class="card__name">
-      Emre Köklü
+      {{cardName}}
     </span>
-    <span class="card__date">
-      01/20
+    <span class="/card__date">
+      {{cardDate}}
     </span>
     <span class="card__cvc">
-      000
+      {{cardCVC}}
     </span>
     
     <span class="card__logo"></span>
@@ -20,13 +20,47 @@
     </span>
   </div>
   <button @click="reverse">Çevir</button>
+
+  <v-row>
+    <v-col cols="12">
+      <v-text-field
+        v-model="cardName"
+        label="Kart Üzerindeki İsim"
+      ></v-text-field>
+    </v-col>
+    <v-col cols="6">
+      <v-text-field
+        v-model="cardNumber"
+        label="Kart Numarası"
+      ></v-text-field>
+    </v-col>
+    <v-col cols="6">
+      <v-text-field
+        v-model="cardDate"
+        label="Son Kullanma Tarihi"
+      ></v-text-field>
+    </v-col>
+    <v-col cols="3">
+      <v-text-field
+        v-model="cardCVC"
+        label="Güvenlik Numarası (CVC)"
+        @focus="back = true"
+        @blur="back = false"
+      ></v-text-field>
+    </v-col>
+  </v-row>
+
 </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      back: false
+      back: false,
+      cardNumber: '0000 0000 0000 0000',
+      cardName: 'Emre Köklü',
+      cardDate: '09/20',
+      cardCVC: '999'
     }
   },
   methods: {
@@ -59,6 +93,8 @@ export default {
       margin:0 0 20px 0;
       position: absolute;
       font-size: 25px;
+      transform:rotateY(180deg);
+      text-align: right;
     }
   
   > * {

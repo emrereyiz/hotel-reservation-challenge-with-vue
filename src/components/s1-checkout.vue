@@ -80,6 +80,10 @@ export default {
   },
   watch: {
     checkinDate () {
+      this.$store.commit("setCheckinDate", this.checkinDate)
+    },
+    checkoutDate () {
+      this.$store.commit("setCheckoutDate", this.checkoutDate)
     }
   },
   computed: {
