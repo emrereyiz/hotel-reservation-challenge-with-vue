@@ -57,6 +57,7 @@
     <app-button 
     class="float-left"
       @click.native="prevStep"
+      :index="stepIndex-1"
     >
     Geri
     </app-button>

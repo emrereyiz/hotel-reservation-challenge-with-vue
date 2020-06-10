@@ -71,6 +71,7 @@
                 <v-date-picker
                 v-model="checkoutDate"
                 :min="checkinDate"
+                locale="tr"
                 ></v-date-picker>
 
               </v-menu>

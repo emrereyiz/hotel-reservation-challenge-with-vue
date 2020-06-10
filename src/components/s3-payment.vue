@@ -51,6 +51,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
+              type="tel"
               v-model="cardNumber"
               v-mask="'#### #### #### ####'"
               label="Kart Numarası"
@@ -60,12 +61,14 @@
                 'has-error': (buttonStatus && !this.$v.cardNumber.required) || (buttonStatus &&  !this.$v.cardNumber.minLength),
                 'has-success': !this.$v.cardNumber.$invalid,
                 }"
-            ></v-text-field>
+            >
+            </v-text-field>
             <label v-if="buttonStatus && !this.$v.cardNumber.required" for="" class="error-message">Lütfen kart numaranızı giriniz</label>
             <label v-if="buttonStatus &&  !this.$v.cardNumber.minLength" for="" class="error-message">Lütfen kart numaranızın tamamını giriniz</label>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
+              type="tel"
               v-mask="'##/##'"
               v-model="cardDate"
               label="Son Kullanma Tarihi"
@@ -81,6 +84,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
+              type="tel"
               v-mask="'###'"
               v-model="cardCVC"
               label="Güvenlik Numarası (CVC)"
