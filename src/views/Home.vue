@@ -1,10 +1,12 @@
 <template>
   <div class="home">
-    {{activeStep}}
-    <v-stepper v-model="stepIndex">
+    <v-stepper
+    @change="changeStep"
+    v-model="stepIndex"
+    >
       <v-stepper-header>
         <v-stepper-step
-        :editable="true"
+        :editable="completedStep > 0"
         :complete="activeStep > 1"
         step="1"
         >
@@ -12,7 +14,7 @@
         </v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step
-        :editable="true"
+        :editable="completedStep > 1"
         :complete="activeStep > 2"
         step="2"
         >
@@ -20,7 +22,7 @@
         </v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step
-        :editable="true"
+        :editable="completedStep > 2"
         :complete="activeStep > 3"
         step="3"
         >
@@ -28,65 +30,25 @@
         </v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step
-        :editable="true"
-        :complete="activeStep > 3"
+        :editable="completedStep > 4"
+        :complete="activeStep > 4"
         step="4"
         >
         Sonuç
         </v-stepper-step>
       </v-stepper-header>
-
       <v-stepper-items>
         <v-stepper-content step="1">
           <app-checkout></app-checkout>
-
-          <v-btn
-            color="primary"
-            @click="setStep(2)"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>Cancel</v-btn>
         </v-stepper-content>
-
         <v-stepper-content step="2">
           <app-room></app-room>
-
-          <v-btn
-            color="primary"
-            @click="setStep(3)"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>Cancel</v-btn>
         </v-stepper-content>
-
         <v-stepper-content step="3">
           <app-payment></app-payment>
-
-          <v-btn
-            color="primary"
-            @click="setStep(4)"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>Cancel</v-btn>
         </v-stepper-content>
-
         <v-stepper-content step="4">
           <app-result></app-result>
-
-          <v-btn
-            color="primary"
-            @click="setStep(1)"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>Cancel</v-btn>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -98,7 +60,7 @@ import checkout from "../components/s1-checkout"
 import room from "../components/s2-roomDetails"
 import payment from "../components/s3-payment"
 import result from "../components/s4-result"
-  export default {
+export default {
     components: {
       appCheckout: checkout,
       appRoom: room,
@@ -110,21 +72,31 @@ import result from "../components/s4-result"
         stepIndex: 1,
       }
     },
-    watch: {
-      stepIndex () {
-        console.log('test')
-        this.$store.commit('setActiveStep', this.stepIndex)
-      }
-    },
-    methods: {
-      setStep (index) {
-        this.stepIndex = index
-      }
-    },
     computed: {
       activeStep () {
         return this.$store.getters.getActiveStep
+      },
+      completedStep () {
+        return this.$store.getters.getCompletedStep
       }
+    },
+    watch: {
+      activeStep () {
+        this.stepIndex = this.activeStep
+      },
+      stepIndex () {
+        this.$store.commit("setActiveStep", Number(this.stepIndex))
+      }
+    },
+    methods: {
+     changeStep ()  {
+       this.$store.commit("setActiveStep", this.activeStep)
+     }
     }
   }
 </script>
+<style lang="less">
+.v-stepper__step__step .v-icon.v-icon{
+  font-size: 12px !important;
+}
+</style>
