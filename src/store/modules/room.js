@@ -15,7 +15,7 @@ const mutations = {
     state.roomType = payload
   },
   setRoomView (state, payload) {
-    state.roomView = payload
+    state.roomView = payload 
   }
 }
 const actions = {

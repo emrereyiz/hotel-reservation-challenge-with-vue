@@ -1,6 +1,5 @@
 <template>
   <section>
-    
     <v-alert
       color="success"
       dark
@@ -8,9 +7,8 @@
       border="left"
       prominent
     >
-      Sayın {{cardDetail.name}} rezervasyon başarıyla oluşturuldu. {{checkinDate}} tarihinde sizi otelimize bekliyoruz. Detaylar aşağıda yer almaktadır.
+      Sayın {{cardDetail.name}}, rezervasyon başarıyla oluşturuldu. {{checkinDate}} tarihinde sizi otelimize bekliyoruz. Detaylar aşağıda yer almaktadır.
     </v-alert>
-
     <v-card
       class="mx-auto"
       max-width="100%"

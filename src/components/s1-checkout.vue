@@ -160,6 +160,9 @@ export default {
     font-size: 12px;
     margin:0;
     padding:0;
+    position: relative;
+    top:-15px;
+    font-weight: bold;
   }
   .v-application{
     .has-error{

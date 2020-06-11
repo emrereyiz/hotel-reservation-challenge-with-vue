@@ -4,9 +4,16 @@ const state = {
   checkoutDate: null
 }
 const getters = {
+  getCheckinDate (state) {
+    return state.checkinDate
+  },
+  getCheckoutDate (state) {
+    return state.checkoutDate
+  },
+  // set to day
   minDate (state) {
     var _date = state.date
-    _date.setDate(_date.getDate() + 0)
+    _date.setDate(_date.getDate() + 1)
     var month = '' + (_date.getMonth() + 1)
     var day = '' + _date.getDate()
     var year = _date.getFullYear()
@@ -15,12 +22,6 @@ const getters = {
     if (day.length < 2) { day = '0' + day }
     return [year, month, day].join('-')
   },
-  getCheckinDate (state) {
-    return state.checkinDate
-  },
-  getCheckoutDate (state) {
-    return state.checkoutDate
-  }
 }
 const mutations = {
   setCheckinDate (state, payload) {
